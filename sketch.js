@@ -14,6 +14,8 @@ function setup() {
 
 function draw() {
 	background(255, 255, 255);
+	strokeWeight(10);
+	stroke(32, 15, 29);
 	fill(randomnumber1, randomnumber2, randomnumber3);
 	ellipse(zombieX, 50, 80, 80);
 	fill(randomnumber2, randomnumber3, randomnumber1);

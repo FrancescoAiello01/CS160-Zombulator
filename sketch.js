@@ -3,9 +3,9 @@
 var zombieX = 80;
 var zombie2X = 100;
 var change = 5;
-var randomnumber1 = 120;
-var randomnumber2 = 35;
-var randomnumber3 = 16;
+var randomNumber1 = 120;
+var randomNumber2 = 35;
+var randomNumber3 = 16;
 
 function setup() {
 	createCanvas(800, 800);
@@ -16,19 +16,19 @@ function draw() {
 	background(255, 255, 255);
 	strokeWeight(10);
 	stroke(32, 15, 29);
-	fill(randomnumber1, randomnumber2, randomnumber3);
+	fill(randomNumber1, randomNumber2, randomNumber3);
 	ellipse(zombieX, 50, 80, 80);
-	fill(randomnumber2, randomnumber3, randomnumber1);
+	fill(randomNumber2, randomNumber3, randomNumber1);
 	ellipse(zombie2X, 150, 80, 80);
 	zombieX = zombieX + change;
 	zombie2X = zombie2X + change;
 
 	if (zombieX >= 800 || zombieX <=0) {
 		change = change * -1;
-		randomnumber = Math.floor((Math.random() * (256)) + 1);
-		randomnumber2 = Math.floor((Math.random() * (256)) + 1);
-		randomnumber3 = Math.floor((Math.random() * (256)) + 1);
-		}
+		randomNumber = random(255);
+		randomNumber2 = random(255);
+		randomNumber3 = random(255);
 	}
+}
 
 

@@ -1,33 +1,52 @@
 // Zombulator by Francesco Aiello
 
-var zombieX = 80;
-var zombie2X = 100;
-var change = 5;
-var randomNumber1 = 120;
-var randomNumber2 = 35;
-var randomNumber3 = 16;
+// human settings
+var humanY = 100;
+var humanV = 0;
+var humanA = 0.2;
+var humanSize = 80;
+var humanDamping = -0.5;
+
+// zombie settings
+var zombieY = 100;
+var zombieV = 0;
+var zombieA = 0.3;
+var zombieSize = 160;
+var zombieDamping = -0.5;
 
 function setup() {
-	createCanvas(800, 800);
+	createCanvas(windowWidth, windowHeight);
+	backgroundColor = color(66, 134, 244);
+	humanColor = color(244, 235, 65);
+	zombieColor = color(84, 232, 51);
+
 }
 
 
 function draw() {
-	background(255, 255, 255);
-	strokeWeight(10);
-	stroke(32, 15, 29);
-	fill(randomNumber1, randomNumber2, randomNumber3);
-	ellipse(zombieX, 50, 80, 80);
-	fill(randomNumber2, randomNumber3, randomNumber1);
-	ellipse(zombie2X, 150, 80, 80);
-	zombieX = zombieX + change;
-	zombie2X = zombie2X + change;
+	background(backgroundColor);
+	noStroke();
+	fill(humanColor);
+	ellipse(windowWidth / 4, humanY, humanSize, humanSize);
+	fill(zombieColor);
+	ellipse(windowWidth / 2, zombieY, zombieSize, zombieSize);
 
-	if (zombieX >= 800 || zombieX <=0) {
-		change = change * -1;
-		randomNumber = random(255);
-		randomNumber2 = random(255);
-		randomNumber3 = random(255);
+	// Y coordinate & velocity calculations for human
+	humanY = humanY + humanV;
+	humanV = humanV + humanA;
+
+	// Calculations for zombie
+	zombieY = zombieY + zombieV;
+	zombieV = zombieV + zombieA;
+
+	if (humanY + (humanSize / 2) >= windowHeight) {
+		humanY = windowHeight - (humanSize / 2);
+		humanV = humanV * humanDamping;
+	}
+
+	if (zombieY + (zombieSize / 2) >= windowHeight) {
+		zombieY = windowHeight - (zombieSize /2);
+		zombieV = zombieV * zombieDamping;
 	}
 }
 

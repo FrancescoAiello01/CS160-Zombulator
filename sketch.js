@@ -1,22 +1,16 @@
 // Zombulator by Francesco Aiello
-// Partner: Joshua
+// CS 160 Exercise 15: Objects
 
 var backgroundColor;
 
-const MIN_SIZE = 25; // old browser? change to var.
+const MIN_SIZE = 5;
 const MAX_SIZE = 50;
 const NUMBER_OF_ZOMBIES = 100;
 const NUMBER_OF_HUMANS = 100;
 
-var zombieXs;
-var zombieYs;
-var zombieSizes;
-var zombieColors;
+var zombies;
 
-var humanXs;
-var humanYs;
-var humanSizes;
-var humanColors;
+var humans;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -32,42 +26,64 @@ function draw() {
   drawHumans();
 }
 
+
+// Zombies. Raaahh!
+
 function initializeZombies() {
-  zombieXs = [];
-  zombieYs = [];
-  zombieSizes = [];
-  zombieColors = [];
+  zombies = [];
   for (var i = 0; i < NUMBER_OF_ZOMBIES; ++i) {
-    zombieXs[i] = random(0, windowWidth);
-    zombieYs[i] = random(0, 200);
-    zombieSizes[i] = random(MIN_SIZE, MAX_SIZE);
-    zombieColors[i] = color(random(200, 255), random(50, 100), random(50, 100), 150);
+    initializeZombie(i);
   }
 }
 
-function initializeHumans() {
-  humanXs = [];
-  humanYs = [];
-  humanSizes = [];
-  humanColors = [];
-  for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
-    humanXs[i] = random(0, windowWidth);
-    humanYs[i] = random(windowHeight - 200, windowHeight);
-    humanSizes[i] = random(MIN_SIZE, MAX_SIZE);
-    humanColors[i] = color(random(50, 100), random(50, 100), random(200, 255), 150);
-  }
+function initializeZombie(index) {
+  zombies[index] = {
+    x: random(0, windowWidth),
+    y: random(0, 200),
+    size: random(MIN_SIZE, MAX_SIZE),
+    color: color(random(100, 255), random(50, 150), random(50, 150), 150)
+  };
 }
 
 function drawZombies() {
   for (var i = 0; i < NUMBER_OF_ZOMBIES; ++i) {
-    fill(zombieColors[i]);
-    ellipse(zombieXs[i], zombieYs[i], zombieSizes[i], zombieSizes[i]);
+    drawZombie(i);
   }
+}
+
+function drawZombie(index) {
+  var zombie = zombies[index];
+  fill(zombie.color);
+  ellipse(zombie.x, zombie.y, zombie.size, zombie.size);
+}
+
+
+// Humans. Mmmm brains!
+
+function initializeHumans(index) {
+  humans = [];
+  for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
+    initializeHuman(i);
+  }
+}
+
+function initializeHuman(index) {
+  humans[index] = {
+    x: random(0, windowWidth),
+    y: random(windowHeight - 200, windowHeight),
+    size: random(MIN_SIZE, MAX_SIZE),
+    color: color(random(50, 150), random(50, 150), random(150, 255), 150)
+  };
 }
 
 function drawHumans() {
   for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
-    fill(humanColors[i]);
-    ellipse(humanXs[i], humanYs[i], humanSizes[i], humanSizes[i]);
+    drawHuman(i);
   }
+}
+
+function drawHuman(index) {
+  var human = humans[index];
+  fill(human.color);
+  ellipse(human.x, human.y, human.size, human.size);
 }

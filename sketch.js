@@ -1,5 +1,5 @@
 // Zombulator by Francesco Aiello
-
+// CS 160 Exercise 19: Polymorphism
 
 var backgroundColor;
 
@@ -92,6 +92,10 @@ function initializeHuman(index) {
     speed: random(0.25, 3),
     size: random(MIN_SIZE, MAX_SIZE),
     color: color(random(50, 150), random(50, 150), random(150, 255), 150),
+    draw: function() {
+      fill(this.color);
+      ellipse(this.x, this.y, this.size, this.size);
+    },
     move: function() {
       var direction = random(0, 100);
       if (direction < 20) {
@@ -103,12 +107,8 @@ function initializeHuman(index) {
       } else {
         this.y -= this.speed;
       }
-    },
-    draw: function() {
-      fill(this.color);
-      ellipse(this.x, this.y, this.size, this.size);
     }
-  };
+  }
 }
 
 function drawHumans() {

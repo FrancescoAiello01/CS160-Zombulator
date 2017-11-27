@@ -34,7 +34,7 @@ function handleCollisions() {
         for (var j = i + 1; j < POPULATION_SIZE; ++j) {
             var target = population[j];
 
-            if (attacker && target && attacker.isTouching(target) && attacker.strength() > target.strength()){
+            if (attacker.isTouching(target) && attacker.strength() > target.strength()){
                 if(Math.random() > 0.5 && attacker.humanoidType == "zombie") {
                     target.humanoidType = "zombie";
                     target.color = color(random(0, 150), random(140, 250), random(0, 80), 150); // Death marker
@@ -43,8 +43,6 @@ function handleCollisions() {
                 } else if (attacker.humanoidType == "human") {
                     fill(color(244, 75, 66), 150);
                     ellipse(target.x, target.y, target.size, target.size); // Death marker
-                    var emittersSetup =
-
                     population.splice(j,1);
                     POPULATION_SIZE = population.length;
                     zombieCount -=1;
@@ -57,7 +55,7 @@ function handleCollisions() {
                     humanCount -= 1;
                 }
 
-            } else if (attacker && target && attacker.isTouching(target) && attacker.strength() < target.strength()){
+            } else if (attacker.isTouching(target) && attacker.strength() < target.strength()){
                 if(Math.random() > 0.5 && target.humanoidType == "zombie") {
                     attacker.humanoidType = "zombie";
                     attacker.color = color(random(0, 150), random(140, 250), random(0, 80), 150);

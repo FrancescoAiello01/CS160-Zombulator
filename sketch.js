@@ -1,3 +1,6 @@
+// Zombulator by Francesco Aiello
+// Zombies and humans fight to the death
+
 var backgroundColor;
 
 const MIN_SIZE = 5;
